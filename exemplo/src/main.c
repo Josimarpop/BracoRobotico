@@ -11,7 +11,8 @@
 #include <GL/glut.h>
 #include <stdlib.h>
 
-static int shoulder = 0, elbow = 0, hand = 0;
+static int elbow = 0, hand = 0;
+float y1 = 0.0;
 
 #define red 1.0, 0.0, 0.0
 #define white 1.0, 1.0, 1.0
@@ -29,17 +30,16 @@ void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glPushMatrix();
 
-	/* origem posicionada no ombro */
+//	Barra
 	glTranslatef(-2.0, 0.0, 0.0);
 	glColor3f(white);
 	glPushMatrix();
 	glScalef(0.4, 4.0, 0.2);
 	glutSolidCube(1.0);
 	glPopMatrix();
-	glRotatef((GLfloat) shoulder, 0.0, 0.0, 1.0);
 
 //	Braco
-	glTranslatef(1.2, 0.0, 0.0);
+	glTranslatef(1.2, y1, 0.0);
 	glColor3f(white);
 	glPushMatrix();
 	glScalef(2.0, 0.4, 1.0);
@@ -109,20 +109,17 @@ void reshape(int w, int h) {
 
 void keyboard(unsigned char key, int x, int y) {
 	switch (key) {
-	case 's':
-		shoulder = (shoulder + 5) % 360;
+
+	case 'c':
+		if (elbow <= 120) {
+			elbow = (elbow + 5) % 360;
+		}
 		glutPostRedisplay();
 		break;
-	case 'S':
-		shoulder = (shoulder - 5) % 360;
-		glutPostRedisplay();
-		break;
-	case 'e':
-		elbow = (elbow + 5) % 360;
-		glutPostRedisplay();
-		break;
-	case 'E':
-		elbow = (elbow - 5) % 360;
+	case 'C':
+		if (elbow >= -120) {
+			elbow = (elbow - 5) % 360;
+		}
 		glutPostRedisplay();
 		break;
 	case 'p':
@@ -131,6 +128,18 @@ void keyboard(unsigned char key, int x, int y) {
 		break;
 	case 'P':
 		hand = (hand - 5) % 360;
+		glutPostRedisplay();
+		break;
+	case 'o':
+		if (y1 < 1.6) {
+			y1 = y1 + 0.1;
+		}
+		glutPostRedisplay();
+		break;
+	case 'O':
+		if (y1 > -1.6) {
+			y1 = y1 - 0.1;
+		}
 		glutPostRedisplay();
 		break;
 	case 27:
