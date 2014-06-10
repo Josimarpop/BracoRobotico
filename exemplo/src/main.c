@@ -7,19 +7,18 @@
  Description : Hello World in C, Ansi-style
  ============================================================================
  */
-
 #include <GL/glut.h>
 #include <stdlib.h>
 
-static int elbow = 0, hand = 0;
-float y1 = 0.0;
 
+static int elbow = 0, hand = 0, finger1 = 0, finger2 = 0, finger3 = 0;
+float y1 = 0.0;
+int cont = 0;
 #define red 1.0, 0.0, 0.0
 #define white 1.0, 1.0, 1.0
 #define blue 0.0, 0.0, 1.0
 
 void init(void) {
-
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	glOrtho(-50, 50, -50, 50, -50, 50);
 //	glEnable(GL_DEPTH_TEST);
@@ -66,18 +65,26 @@ void display(void) {
 	glPopMatrix();
 
 //	Dedo 1
+
 	glTranslatef(0.3, 0.3, -0.3);
 	glColor3f(blue);
 	glPushMatrix();
+	glTranslatef(-0.2, 0.0, 0.0);
+	glRotatef((GLfloat) finger1, 0.0, 0.5, 1.0);
+	glTranslatef(0.2, 0.0, 0.0);
 	glScalef(0.5, 0.1, 0.1);
 	glutSolidCube(1.0);
 	glPopMatrix();
 	glTranslatef(-0.3, -0.3, 0.3);
 
 //	Dedo 2
+
 	glTranslatef(0.3, 0.0, 0.3);
 	glColor3f(blue);
 	glPushMatrix();
+	glTranslatef(-0.2, 0.0, 0.0);
+	glRotatef((GLfloat) finger2, 0.0, 1.0, 0.0);
+	glTranslatef(0.2, 0.0, 0.0);
 	glScalef(0.5, 0.1, 0.1);
 	glutSolidCube(1.0);
 	glPopMatrix();
@@ -87,6 +94,9 @@ void display(void) {
 	glTranslatef(0.3, -0.3, -0.3);
 	glColor3f(blue);
 	glPushMatrix();
+	glTranslatef(-0.2, 0.0, 0.0);
+	glRotatef((GLfloat) finger3, 0.0, -0.5, 1.0);
+	glTranslatef(0.2, 0.0, 0.0);
 	glScalef(0.5, 0.1, 0.1);
 	glutSolidCube(1.0);
 	glPopMatrix();
@@ -140,6 +150,44 @@ void keyboard(unsigned char key, int x, int y) {
 		if (y1 > -1.6) {
 			y1 = y1 - 0.1;
 		}
+		glutPostRedisplay();
+		break;
+	case 'u':
+		if(cont<8){
+			finger1 = (finger1 - 5) % 360;
+			finger2 = (finger2 + 5) % 360;
+			finger3 = (finger3 + 5) % 360;
+			cont++;
+		}
+		glutPostRedisplay();
+		break;
+	case 'U':
+		if(cont>-8){
+			finger1 = (finger1 + 5) % 360;
+			finger2 = (finger2 - 5) % 360;
+			finger3 = (finger3 - 5) % 360;
+			cont--;
+		}
+		glutPostRedisplay();
+		break;
+	case 'i':
+
+		break;
+	case 'I':
+
+		break;
+	case 'm':
+
+		break;
+	case 'M':
+
+		break;
+
+	case 'a':
+		finger1 = 0;
+		finger2 = 0;
+		finger3 = 0;
+		cont = 0;
 		glutPostRedisplay();
 		break;
 	case 27:
