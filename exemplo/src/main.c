@@ -10,10 +10,9 @@
 #include <GL/glut.h>
 #include <stdlib.h>
 
-
 static int elbow = 0, hand = 0, finger1 = 0, finger2 = 0, finger3 = 0;
 float y1 = 0.0;
-int cont = 0;
+int cont = 0, cont1 = 0, cont2 = 0, cont3 = 0;
 #define red 1.0, 0.0, 0.0
 #define white 1.0, 1.0, 1.0
 #define blue 0.0, 0.0, 1.0
@@ -153,7 +152,7 @@ void keyboard(unsigned char key, int x, int y) {
 		glutPostRedisplay();
 		break;
 	case 'u':
-		if(cont<8){
+		if (cont < 8) {
 			finger1 = (finger1 - 5) % 360;
 			finger2 = (finger2 + 5) % 360;
 			finger3 = (finger3 + 5) % 360;
@@ -162,7 +161,7 @@ void keyboard(unsigned char key, int x, int y) {
 		glutPostRedisplay();
 		break;
 	case 'U':
-		if(cont>-8){
+		if (cont > -8) {
 			finger1 = (finger1 + 5) % 360;
 			finger2 = (finger2 - 5) % 360;
 			finger3 = (finger3 - 5) % 360;
@@ -171,19 +170,58 @@ void keyboard(unsigned char key, int x, int y) {
 		glutPostRedisplay();
 		break;
 	case 'i':
-
+		if (cont1 < 8) {
+			finger1 = (finger1 - 5) % 360;
+			cont1++;
+		}
+		glutPostRedisplay();
 		break;
 	case 'I':
-
+		if (cont1 > -8) {
+			finger1 = (finger1 + 5) % 360;
+			cont1--;
+		}
+		glutPostRedisplay();
 		break;
 	case 'm':
-
+		if (cont2 < 8) {
+			finger2 = (finger2 + 5) % 360;
+			cont2++;
+		}
+		glutPostRedisplay();
 		break;
 	case 'M':
+		if (cont2 > -8) {
+			finger2 = (finger2 - 5) % 360;
+			cont2--;
+		}
+		glutPostRedisplay();
+		break;
+	case 't':
+		if (cont3 < 8) {
+			finger3 = (finger3 + 5) % 360;
+			cont3++;
+		}
+		glutPostRedisplay();
+		break;
 
+	case 'T':
+		if (cont3 > -8) {
+			finger3 = (finger3 - 5) % 360;
+			cont3--;
+		}
+		glutPostRedisplay();
 		break;
 
 	case 'a':
+		finger1 = 0;
+		finger2 = 0;
+		finger3 = 0;
+		cont = 0;
+		glutPostRedisplay();
+		break;
+
+	case 'A':
 		finger1 = 0;
 		finger2 = 0;
 		finger3 = 0;
