@@ -20,12 +20,12 @@ int cont = 0, cont1 = 0, cont2 = 0, cont3 = 0;
 void init(void) {
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	glOrtho(-50, 50, -50, 50, -50, 50);
-//	glEnable(GL_DEPTH_TEST);
-//	glEnable(GL_CULL_FACE);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
 }
 
 void display(void) {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
 
 //	Barra
