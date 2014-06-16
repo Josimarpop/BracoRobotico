@@ -34,14 +34,24 @@ void display(void) {
 	glPushMatrix();
 	glScalef(0.4, 4.0, 0.2);
 	glutSolidCube(1.0);
+	glutWireCube(1.0);
 	glPopMatrix();
 
 //	Braco
 	glTranslatef(1.2, y1, 0.0);
 	glColor3f(white);
 	glPushMatrix();
-	glScalef(2.0, 0.4, 1.0);
-	glutSolidCube(1.0);
+	glScalef(2.0, 0.4, 0.2);
+	//glutSolidCube(1.0);
+	glutWireCube(1.0);
+	glPopMatrix();
+
+	glColor3f(0.0, 1.0, 0.0);
+	glPushMatrix();
+	glTranslatef(1.0, 0.0, 0.0);
+	glRotatef((GLfloat) elbow, 0.0, 0.0, 1.0);
+	//glutSolidSphere (0.5, 16, 16);
+	glutWireSphere(0.5, 16, 16);
 	glPopMatrix();
 
 //	Cotovelo
@@ -50,8 +60,9 @@ void display(void) {
 	glTranslatef(1.0, 0.0, 0.0);
 	glColor3f(white);
 	glPushMatrix();
-	glScalef(2.0, 0.2, 1.0);
-	glutSolidCube(1.0);
+	glScalef(2.0, 0.2, 0.2);
+	//glutSolidCube(1.0);
+	glutWireCube(1.0);
 	glPopMatrix();
 
 //	Punho
