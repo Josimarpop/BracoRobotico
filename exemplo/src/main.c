@@ -16,6 +16,8 @@ int cont = 0, cont1 = 0, cont2 = 0, cont3 = 0;
 #define red 1.0, 0.0, 0.0
 #define white 1.0, 1.0, 1.0
 #define blue 0.0, 0.0, 1.0
+#define yellow 1.0, 1.0, 0.0
+#define pink 1.0, 0.0, 0.5
 
 void init(void) {
 	glClearColor(0.0, 0.0, 0.0, 0.0);
@@ -39,7 +41,7 @@ void display(void) {
 
 //	Braco
 	glTranslatef(1.2, y1, 0.0);
-	glColor3f(white);
+	glColor3f(yellow);
 	glPushMatrix();
 	glScalef(2.0, 0.4, 0.2);
 	//glutSolidCube(1.0);
@@ -58,7 +60,7 @@ void display(void) {
 	glTranslatef(1.0, 0.0, 0.0);
 	glRotatef((GLfloat) elbow, 0.0, 0.0, 1.0);
 	glTranslatef(1.0, 0.0, 0.0);
-	glColor3f(white);
+	glColor3f(pink);
 	glPushMatrix();
 	glScalef(2.0, 0.2, 0.2);
 	//glutSolidCube(1.0);
@@ -229,6 +231,9 @@ void keyboard(unsigned char key, int x, int y) {
 		finger2 = 0;
 		finger3 = 0;
 		cont = 0;
+		cont1 = 0;
+		cont2 = 0;
+		cont3 = 0;
 		glutPostRedisplay();
 		break;
 
